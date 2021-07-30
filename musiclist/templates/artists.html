@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block artists %} active {% endblock artists %}
+{% block title %}
+Artists
+{% endblock title %}
+{% block body %}
+
+
+
+
+<div class="row mt-2 ">
+
+{% for i in artists %}
+
+<div class="col-6 col-md-2 col-lg-2 wapper_artist">
+ <a class="anker" href="/musiclist/artist/{{i.name}}">
+ <img class="bd-placeholder-img rounded-circle" width="140" height="140"
+                                                        src="{{i.image.url}}">
+
+        <h6 class=" text-center">{{i.name}}</h6>
+   </a>
+      </div>                   
+   {% endfor %}
+</div>
+{% endblock body %}
+
+ {% block music_menu %}     
+<h6 class="text-center">Sorry, Music menu features are not add yet ! We will try to add in the future . </h1>
+<p class="text-center">© CopyRight 2021 • NepaliSong</p>
+ {% endblock %}

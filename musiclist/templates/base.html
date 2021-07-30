@@ -1,0 +1,305 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+      <meta charset="UTF-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>
+            NepaliSong -
+            {% block title %}
+
+            {% endblock title %}
+      </title>
+      {% load static %}
+      <meta charset="UTF-8">
+      <!-- links of all the websit -->
+      <link rel="stylesheet" href="../static/css/bootstrap-grid.min.css">
+      <link rel="stylesheet" href="../static/css/bootstrap-reboot.css">
+      <link rel="stylesheet" href="{% static 'css/bootstrap-grid.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap-grid.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap-grid.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.css' %}">
+      <link rel="stylesheet" href="{% static 'css/bootstrap-reboot.min.css' %}">
+      <link rel="stylesheet" href="{% static 'css/style_desktop_laptop.css' %}">
+      <link rel="stylesheet" href="{% static 'css/style_desktop_laptop_music_menu.css' %}">
+
+      <!--  end of links of all the websit -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lato:wght@700&display=swap" rel="stylesheet">
+
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+            integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+
+</head>
+
+
+
+<body>
+
+<!-- bg-dark -->
+<!-- position: fixed; -->
+  <!-- Login Modal -->
+  <div class="modal fade  " id="loginModal" tabindex="-1" aria-labelledby="loginModal" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content bg-dark ">
+        <div class="modal-header">
+          <h5 class="modal-title" id="loginModalTitle">NepaliSong - Longin Form.</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- <form action="/login" method="POST"> {% csrf_token %} -->
+            <form action="/musiclist/login" method="POST"> {% csrf_token %}
+            <div class="form-group">
+              <label for="username">Username</label>
+              <input type="text" class="form-control" id="loginusername" name="loginusername"
+                placeholder="Enter your username " required>
+            </div>
+            <div class="form-group">
+              <label for="pass">Enter your password </label>
+              <input type="password" class="form-control" id="loginpassword" name="loginpassword"
+                placeholder="Enter your password " required>
+            </div>
+
+            <button type="submit" class="btn btn-block btn-secondary p-2 ">Submit</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- End of Login Modal -->
+
+      <nav class="navbar  navbar-expand-lg navbar-dark ">
+            <a class="navbar-brand" href="/"><em>
+                        <!-- <h4>listen<span class="text-danger">Nepal</span></h4> -->
+                        <!-- <h4>Muci<span class="text-danger">Nepal</span></h4> -->
+                        <h4>Nepali<span class="text-danger">Song</span></h4>
+                        <!-- <h4>Gana<span class="text-danger">Nepal</span></h4> -->
+                        <!-- <h4>Nepali<span class="text-danger">Geet</span></h4> -->
+                  </em> </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav mr-auto  navbar_ul_margin ">
+                        <li class="nav-item mt-0 mb-0  {% block home %}{% endblock home %}">
+                              <a class="nav-link" href="/"><i class="fa fa-home icon-height  "></i> Home
+                                    <span class="sr-only">(current)</span>
+                              </a>
+                        </li>
+                           <li class="nav-item mt-0 mb-0  {% block browse %}{% endblock browse %}">
+                              <a class="nav-link" href="/musiclist/browse">
+                                    <i class="fab fa-chrome "></i> Browse
+                              </a>
+                        </li>
+                        <li class="nav-item mt-0 mb-0  {% block artists %}{% endblock artists %}">
+                              <a class="nav-link" href="/musiclist/artists">
+                                    <i class="fa fa-user-plus"></i> Artists
+                              </a>
+                        </li>
+                        <li class="nav-item mt-0 mb-0  {% block albums %}{% endblock albums %}">
+                              <a class="nav-link" href="/musiclist/albums">
+                                    <i class="fa fa-compact-disc"></i> Albums
+                              </a>
+                        </li>
+                        <li class="nav-item mt-0 mb-0  {% block discover %}{% endblock discover %}">
+                              <a class="nav-link" href="/musiclist/discover">
+                                    <i class="fa fa-compass icon-height "></i> Discover
+                              </a>
+                        </li>
+                        {% if user.is_authenticated %}
+                        <!-- <li class="nav-item mt-0 mb-0   ">
+                              <a class="nav-link" href="/musiclist/history">
+                                    History
+                              </a>
+                        </li> -->
+                        <!-- <li class="nav-item mt-0 mb-0 mx-2   {% block favourite %}{% endblock favourite %} ">
+                              <a class="nav-link" href="/musiclist/watchlater">
+                                    <i class="fa fa-heart"></i> Favourite
+                              </a>
+                        </li> -->
+                        {% endif %}
+                        <form class="form-inline my-2 my-lg-0" method="get" action="/musiclist/search">
+                              <div class="input-group">
+                                    <input name="query" type="text" class="form-control" id="search_input"
+                                          placeholder="search" />
+                                    <div class="input-group-append">
+                                          <button class="btn btn-secondary " type="submit" id="button-addon2"><i
+                                                      class="fa fa-search"></i></button>
+                                    </div>
+                              </div>
+                        </form>
+
+
+
+
+
+                        {% if user.is_authenticated %}
+                        <li class="nav-item mx-4 dropdown">
+                              <a class="nav-link dropdown-toggle" href='#' id="navbarDropdown" role="button"
+                                    data-toggle="dropdown">
+                                    <img src="{{chan.imgofablum.url}} " class="ui avatar image">  &nbsp;
+                                   User {{request.user}}</a>
+                              <div class="dropdown-menu bg-dark" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item " href="/musiclist/c/{{request.user}}">
+                                          <h6 class="text-secondary" style="font-weight:bold;"> Your channel</h6>
+                                    </a>
+
+                                    <a class="dropdown-item " href="/musiclist/upload">
+                                          <h6 class="text-secondary" style="font-weight:bold;"> Upload Music</h6>
+                                    </a>
+                                    <a class="dropdown-item" href="/musiclist/logout">
+                                          <h6 class="text-secondary" style="font-weight:bold;">logout</h6>
+                                    </a>
+                              </div>
+                        </li>
+                        {% else %}
+                  </ul>
+
+
+            </div>
+
+            <!-- Button to  trigger Login modal -->
+            <a>
+                  <button type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#loginModal">
+                        Login
+                  </button>
+            </a>
+            <a href="/musiclist/singup">
+                  <button type="button" class="btn btn-danger mr-2" data-toggle="modal" data-target="#signupModal">
+                        signup
+                  </button>
+            </a>
+            {% endif %}
+            </div>
+      </nav>
+
+      <div class="container-fluid" id="container-fluid">
+            <div class="row ">
+                  <div class="col-2 col-md-1 col-lg-1   bg-dark custom_scroll_bar_for_side_bar col-3_displaynone    ">
+
+                              <p class='text-center text-light'>New Songs</p>
+
+                        {% for i in newsongs %}
+                        <div disabled class="row ">
+                              <!-- <a href="/musiclist/songs/{{i.song_id}}"> -->
+                                    <img src="{{i.imgofsong.url}}"
+                                          class=" custom_scroll_bar_for_side_bar_img image_width " alt=""
+                                         >
+                              <!-- </a> -->
+                        </div>
+                        <br>
+                        {% endfor %}
+
+                  </div>
+
+                  <div class="col-10 col-md-11 col-lg-11 p-0 m-0 backgound_color ">
+                        <div class=" wrapper">
+                              <div class="postion-scroll">
+                                    <!-- these is the song  -->
+                                    <div class="row m-0 p-0">
+
+                                          <div class="col-12 col-md-9 col-lg-9">
+                                          
+                                          <!-- <div class="postion-scroll"> -->
+                                          {% block body %}
+
+                                          {% endblock %}
+                                          <!-- </div> -->
+                                           </div>
+                                          <div class="col-12 col-md-3 col-lg-3">
+                                          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus ad animi, ab, eaque tenetur magni sed accusamus eius praesentium optio alias non, hic cum debitis quasi mollitia itaque quaerat rerum?
+                                                Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci architecto corporis nihil, neque officia eos aspernatur magnam laboriosam qui tempora nisi non consectetur quaerat id, enim, accusamus reprehenderit nemo! Accusamus  </p>
+
+                                          </div>
+                                    </div>
+                                      <footer class="pt-4 my-md-5 pt-md-5 border-top">
+                                          <div class="row m-0 p-0 ">
+                                                <div class="col-12 col-md">
+                                                      <img class="mb-2" src="/docs/4.5/assets/brand/bootstrap-solid.svg" alt="" width="24"
+                                                            height="24">
+                                                      <small class="d-block mb-3 text-muted">© 2017-2020</small>
+                                                </div>
+                                                <div class="col-6 col-md">
+                                                      <h5>Features</h5>
+                                                      <ul class="list-unstyled text-small">
+                                                            <li><a class="text-muted" href="#">Cool stuff</a></li>
+                                                            <li><a class="text-muted" href="#">Random feature</a></li>
+                                                            <li><a class="text-muted" href="#">Team feature</a></li>
+                                                            <li><a class="text-muted" href="#">Stuff for developers</a></li>
+                                                            <li><a class="text-muted" href="#">Another one</a></li>
+                                                            <li><a class="text-muted" href="#">Last time</a></li>
+                                                      </ul>
+                                                </div>
+                                                <div class="col-6 col-md">
+                                                      <h5>Resources</h5>
+                                                      <ul class="list-unstyled text-small">
+                                                            <li><a class="text-muted" href="#">Resource</a></li>
+                                                            <li><a class="text-muted" href="#">Resource name</a></li>
+                                                            <li><a class="text-muted" href="#">Another resource</a></li>
+                                                            <li><a class="text-muted" href="#">Final resource</a></li>
+                                                      </ul>
+                                                </div>
+                                                <div class="col-6 col-md">
+                                                      <h5>About</h5>
+                                                      <ul class="list-unstyled text-small">
+                                                            <li><a class="text-muted" href="#">Team</a></li>
+                                                            <li><a class="text-muted" href="#">Locations</a></li>
+                                                            <li><a class="text-muted" href="#">Privacy</a></li>
+                                                            <li><a class="text-muted" href="#">Terms</a></li>
+                                                      </ul>
+                                                </div>
+                                          </div>
+                                    </footer>
+
+                              </div>
+
+                                <div class="row">
+                                      <div class="col-12">
+                                          {% block music_menu %}
+
+
+
+                                          {% endblock %}
+                                 </div>
+                               </div>
+
+                            
+
+
+                        </div>
+
+                  </div>
+
+            </div>
+      </div>
+
+
+
+      <!--  fontawasome -->
+      <script src="{% static 'js/all.js'%}"></script>
+
+      <!-- end of fontawasome -->
+
+      <script src="{% static 'js/bootstrap.js ' %}"></script>
+      <script src="{% static 'js/jquery-3.5.1.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.min.js' %}"></script>
+      <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+      <script src="{% static 'js/bootstrap.js.map' %}"></script>
+      <!--Typed.js-->
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/typed.js"></script>
+</body>
+
+</html>

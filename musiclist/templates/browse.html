@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% block browse %} active {% endblock browse %}
+{% block title %}
+              Browse
+{% endblock title %}
+{% block body %}
+<style>
+              .text_cap {
+                            text-transform: capitalize;
+                            padding-left: 20px;
+              }
+              .img_of_col_2{
+                            height: 70px;
+                            width: 90%;
+                            cursor: pointer;
+
+                            border-radius: 8px;
+                         
+              }
+              .name_of_the_song{
+                            color:#fff;
+                            font-size: 11.5px;
+                            text-transform: capitalize;
+                            cursor: pointer;
+
+
+              }
+              .name_of_the_singer{
+                            color:gray;
+                            font-size: 11.5px;
+                            text-transform: capitalize;
+                            cursor: pointer;
+
+              }
+              .border{
+                            border: 1px solid red;
+              border_bottom  }
+        text-left       .{
+         6    text-right                   border-top: 2px solid rgb(99, 98, 98)<h6><a href="#">Visit all</a></h6>        border-bottom: 2px solid rgb(99, 98, 98);
+    margin-top: 2px;
+              }
+</style>
+ 
+        
+              
+                
+                <!-- top musics  - border_bottom ->
+                            <h4 clas6="t text-leftext_cap  "> top musics</h4>
+                            <div class="row m- text-right0<h6><a href="#">Visit all</a></h6>
+                                          {% for i in top_10_music  %}
+                                          <div class="col-12 col-md-4 col-lg-4 my-2 p-0">
+                                                        <div class="row m-0 p-0 ">
+                                                                      <div class="col-4 m-0 p-1 ">                         
+                                                                      <img class="img_of_col_2" src="/media/{{i.imgofsong}}" alt="">
+                                                                      </div>
+                                                                      <div class="col-8 m-0 p-0 ">
+                                                           
+                                                                      <h6 class="name_of_the_song mt-3">{{i.name| safe |truncatechars:30}}</h6>
+                                                                      <h6 class="name_of_the_singer mb-1 ">{{i.singer| safe |truncatechars:15}}</h6>
+                                                                      </div>
+                                                        </div>
+                                        
+                                          </div>
+                                          {% endfor %}
+                            </div>
+                            
+                        top_10_date -->
+                        
+                    <div class="row border_bottom ">
+                        <div class="col-6 text-left"><h6 class="text_cap ">  new release </h6></div>
+                        <div class="col-6 text-right">
+                            <h6><a href="/musiclist/new_song">Visit all</a></h6>
+                        </div>
+                    </div>
+                        <div class="row m-0 p-0 ">
+
+                                          {% for i in top_10_date  %}
+                                           <div class="col-12 col-md-4 col-lg-4 p-0">
+                                                        <div class="row m-0 p-0 ">
+                                                                      <div class="col-4 m-0 p-1 ">                         
+                                                                      <img class="img_of_col_2" src="/media/{{i.imgofsong}}" alt="">
+                                                                      </div>
+                                                                      <div class="col-8 m-0 p-0 ">
+                                                           
+                                                                      <h6 class="name_of_the_song mt-3">{{i.name| safe |truncatechars:30}}</h6>
+                                                                      <h6 class="name_of_the_singer mb-1 ">{{i.singer| safe |truncatechars:15}}</h6>
+                                                                      </div>
+                                                        </div>
+                                        
+                                          </div>
+                                          {% endfor %}
+                            </div> 
+
+
+                            <!-- top_10_singer -->
+                            <div class="row border_bottom ">
+                                <div class="col-6 text-left"><h6 class="text_cap "> old Singers</h6></div>
+                                <div class="col-6 text-right">
+                                    <h6><a href="/musiclist/old_song">Visit all</a></h6>
+                                </div>
+                            </div>
+                            <div class="row m-0 p-0 ">
+
+                                          {% for i in top_10_singer  %}
+                                         <div class="col-12 col-md-4 col-lg-4 p-0">
+                                                        <div class="row m-0 p-0 ">
+                                                                      <div class="col-4 m-0 p-1 ">                         
+                                                                      <img class="img_of_col_2" src="/media/{{i.image}}" alt="">
+                                                                      </div>
+                                                                      <div class="col-8 m-0 p-0 ">
+                                                        
+                                                                      <h6 class="name_of_the_singer mb-1 ">{{i.name| safe |truncatechars:15}}</h6>
+                                                                      </div>
+                                                        </div>
+                                        
+                                          </div>
+                                          {% endfor %}
+                            </div>
+                            
+
+                            <!-- top_10_views -->
+                        <div class="row border_bottom ">
+                            <div class="col-6 text-left"><h6 class="text_cap "> most listened music </h6></div>
+                            <div class="col-6 text-right">
+                                <h6><a href="/musiclist/most_listened">Visit all</a></h6>
+                            </div>
+                        </div>
+                            <div class="row m-0 p-0 ">
+
+                                          {% for i in top_10_views  %}
+                                               <div class="col-12 col-md-4 col-lg-4 p-0">
+                                                        <div class="row m-0 p-0 ">
+                                                                      <div class="col-4 m-0 p-1 ">                         
+                                                                      <img class="img_of_col_2" src="/media/{{i.imgofsong}}" alt="">
+                                                                      </div>
+                                                                      <div class="col-8 m-0 p-0 ">
+                                                           
+                                                                      <h6 class="name_of_the_song mt-3">{{i.name| safe |truncatechars:30}}</h6>
+                                                                      <h6 class="name_of_the_singer mb-1 ">{{i.singer| safe |truncatechars:15}}</h6>
+                                                                      </div>
+                                                        </div>
+                                        
+                                          </div>
+                                          {% endfor %}
+                            </div>
+    
+
+                            <!-- to_10_cats -->
+<div class="border_bottom"></div>
+                            <div class="row m-0 p-0 ">
+
+                                          {% for i in to_10_cats  %}
+                                               <div class="col-12 col-md-4 col-lg-4 p-0">
+                                                        <div class="row m-0 p-0 ">
+                                                                      <div class="col-4 m-0 p-1 ">                         
+                                                                      <img class="img_of_col_2" src="/media/{{i.image}}" alt="">
+                                                                      </div>
+                                                                      <div class="col-8 m-0 p-0 ">
+                                                           
+                                                                      <h6 class="name_of_the_song mt-3">{{i.name| safe |truncatechars:30}}</h6>
+                                                                      <h6 class="name_of_the_singer mb-1 ">{{i.title| safe |truncatechars:15}}</h6>
+                                                                      </div>
+                                                        </div>
+                                        
+                                          </div>
+                                          {% endfor %}
+                            </div>
+
+
+{% endblock body %}
+
+ {% block music_menu %}     
+<h6 class="text-center">Sorry. Music menu features are not add yet ! We will try to add in the future . </h1>
+<p class="text-center">© CopyRight 2021 • NepaliSong</p>
+ {% endblock %}

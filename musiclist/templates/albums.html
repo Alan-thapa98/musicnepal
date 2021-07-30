@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block albums %} active {% endblock albums %}
+{% block title %}
+Albums
+{% endblock title %}
+{% block body %}
+
+   <div   class="row text-center m-1  topic">
+            <div class="col-12 bg_img bg-dark m-2 p-4 ">
+                   <h3>NepaliSong.com</h3>
+                  <h4>Top 30 Nepali Tranding Albums! </h4>
+                  <h4> of 2021 comming soon....</h4>
+            </div>
+      </div>
+
+
+    <div class="postion-scroll">
+  <div class="row mt-1 ">
+
+
+            
+
+{% for i in chan %}
+
+
+                                          <div class="col-2 col-md-2 col-lg-2 p-0 wapper_albums ">
+                                          <div>
+                                          <img class="wapper_albums_img p-0 m-0 "
+                                                        src="{{i.imgofablum.url}}">
+                                          </div>
+                                          <div class="content">
+                                          <div class="info">
+                                                        <h6> {{i.name}}</h6>
+                                                        <h6>Album</h6>
+                                          </div>
+                                          </div>
+                                          <!-- <ul>
+                                                        <li><a class="anker" href="/musiclist/c/{{i.name}}"><span class="fa fa-play text-center"></span></a></li>
+                                                        <li><a class="anker" href="/musiclist/c/{{i.name}}"><span class="fab fa-twitter text-center"></span></a></li>
+                                                        
+                                          </ul> -->
+                                          </div>
+
+
+                       
+                            {% endfor %}
+                                                   
+
+
+  </div>
+</div>
+
+{% endblock body %}
+ {% block music_menu %}     
+<h6 class="text-center">Sorry , Music menu features are not add yet ! We will try to add in the future . </h1>
+<p class="text-center">© CopyRight 2021 • NepaliSong</p>
+
+
+ {% endblock %}
+
+

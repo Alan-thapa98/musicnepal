@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block discover %} active {% endblock discover %}
+{% block title %}
+Descover Songs 
+{% endblock title %}
+{% block body %}
+<style>
+
+</style>
+
+               <!-- these is for the discoverys  -->
+              
+              
+
+<div class="row mt-2 text-center ">
+  <div class="col-12 text-center">
+    <div class="h-100 p-5 bg-dark jambotron_border ">
+          <h2>NepaliSong.com</h2>
+       <h4> Explore the varitey types of the songs and enjoy with NepaliSong.
+         Here you can get {{discoverys.count}}+ categorey song.
+       </h4>
+          <button class="btn btn-outline-secondary" type="button">Discoverys. </button>
+        </div>
+
+    
+  </div>
+  </div>
+
+
+
+
+                         <div class="row">
+
+
+<!-- 
+                                          <ul>
+                                                        <li><a class="anker" href="/musiclist/cats/{{i.title}}"><span class="fa fa-play text-center"></span></a></li>
+                                                        <li><a class="anker" href="/musiclist/cats/{{i.title}}"><span class="fab fa-twitter text-center"></span></a></li>
+                                                        
+                                          </ul> -->
+
+
+<style>
+  .jambotron_border{
+    border-radius: 2px;
+  }
+  .bg_pic_of_cats{
+    height: 110px;
+    font-size: 29px;
+    background-size: cover;
+    border-radius: 10px;
+
+}
+  .image_of_cats{
+      display: flex;
+    text-align: center;
+    justify-content: center;}
+</style>
+               {% for i in discoverys %}
+               <div class="col-12 col-md-3 col-lg-3 my-1 py-1 px-1 ">
+               <a class="anker text-light " href="/musiclist/cats/{{i.title}}">
+           <div class="bg_pic_of_cats" style="background-image:url({{i.image.url}}) ;">
+                                          <div class="image_of_cats pt-4">
+                                     
+                                                                                        {{i.title|truncatechars:20}}</h4>
+                                                        <span class="text-center pt-4">{{i.category}}</span>
+                                          </div>
+                                        
+
+                                          </div>
+                                          </a>
+               </div>
+
+                                        
+
+
+                       
+                            {% endfor %}
+                                                   
+
+
+  </div>
+
+
+
+{% endblock body %}
+
+
+ {% block music_menu %}     
+<h6 class="text-center">Sorry. Music menu features are not add yet ! We will try to add in the future . </h1>
+<p class="text-center">© CopyRight 2021 • NepaliSong</p>
+ {% endblock %}

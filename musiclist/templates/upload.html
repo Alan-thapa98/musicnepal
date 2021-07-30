@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+{% block title %}
+Upload you music
+{% endblock title %}
+{% block body %}
+<div class="container m-4 p-4 ">
+      <h2 class="text-center">Upload Your Music </h2>
+      <form action="/musiclist/upload" enctype="multipart/form-data" method='post'>
+            {% csrf_token %}
+            <div class="form-group">
+                  <label for="username">Music name: " _  and  _-_ " are not alloded play make sure that.</label>
+                  <input type="text" class="form-control" id="username" name="name"
+                        placeholder="Enter your music name... " required>
+            </div>
+            <div class="form-group">
+                  <label for="fname">Singer name:</label>
+                  <input type="text" class="form-control" id="fname" name="singer"
+                        placeholder="Enter the name of singer... " required>
+            </div>
+                       
+
+            <div class="form-group"> 
+                  <label for="id_category">Select Category of the song:</label>
+                  <select name="category" id="id_category" style="height: 39px;width: 81.1%;">
+                  {% for i in cats  %}
+                  <option value="{{i.title}}" style="text-transform: capitalize;">{{i.title}}</option>
+                  {% endfor %}
+                  </select>
+            </div>
+
+            <div class="form-group">
+                  <label for="tag">Tags - Neme of music and singer are important :</label>
+                  <input type="text" class="form-control" id="tag" name="tags"
+                        placeholder="Enter the type of song...  " required>
+            </div>
+            
+            <div class="form-group">
+                  <label for="album_name">Album:</label>
+                  <input type="text" class="form-control" id="album_name" name="album_name"
+                        placeholder="Enter the type of song...  " required>
+            </div> 
+
+            <div class="form-group">
+                  <label for="img">Select a image:</label>
+                  <input type="file" class="form-control-file" id="filesToUpload2" multiple="multiple" name='imgofsong'
+                        required>
+            </div>
+
+
+            <div class="form-group">
+                  <label for="movie">Movie:</label>
+                  <input type="text" class="form-control" id="movie" name="movie"
+                        placeholder="Enter the name of movie or type no movie... " required>
+            </div>
+
+            <div class="form-group">
+                  <label for="video">Select a Audio file:</label>
+                  <input type="file" class="form-control-file" id="filesToUpload2" multiple="multiple" name='file'
+                        required>
+            </div>
+
+
+            <div class="form-group">
+                  <label for="update">Date of release:</label>
+                  <input type="text" class="form-control" id="update" name="update"
+                        placeholder="Enter the song release date..." required>
+            </div>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-block btn-primary p-2  ">Submit</button>
+      </form>
+
+
+
+</div>
+
+{% endblock body %}
+
+
+
+ {% block music_menu %}     
+<h6 class="text-center">Sorry. Music menu features are not add yet ! We will try to add in the future . </h1>
+<p class="text-center">© CopyRight 2021 • NepaliSong</p>
+ {% endblock %}

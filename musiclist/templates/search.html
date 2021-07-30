@@ -1,0 +1,384 @@
+{% extends 'base.html'%}
+{% block categoreys %} active {% endblock categoreys %}
+{% block title %}
+search
+
+{% endblock title %}
+{% block body %}
+
+
+                                    <div class="postion scroll">
+                                          <!-- showing the  for query search  -->
+                                          <div class="row border_bottom">
+                                                <div class="col-12 text-center">
+                                                      <em>
+                                                            <h4>Search result for :"{{query}}"</h4>
+                                                      </em>
+
+                                                </div>
+                                          </div>
+                                          <!-- these is the artist   -->
+                                         
+              <p>Songs:</p>                                                
+{% if Allsongs|length < 1  %}
+<h6 class="border_bottom">There is no songs related to search please try once more..</h6>
+      
+{% else %}
+         <div class="music-list border_bottom ">
+                                                <div class="header">
+                                                      <div class="row">
+                                                            <i class="list material-icons">queue_music</i>
+                                                            <span>Music list</span>
+                                                      </div>
+                                                      <i id="close" class="material-icons">close</i>
+                                                </div>
+                                                <div class="row  p-1 m-0 ">
+                                                      <div class="col-md-2 col-lg-2 col-4 p-0 m-0  text-center "> # .
+                                                            image </div>
+                                                      <div class="col-md-4 col-lg-4  col-5 p-0 m-0 "> Title </div>
+                                                      <div class="col-md-3 col-lg-3  col-5 p-0 m-0 "> Singer </div>
+                                                      <div class="col-md-1 col-lg-1 col-2 p-0 m-0 text-center "> Heart
+                                                      </div>
+                                                      <div class="col-md-1 col-lg-1 col-1 p-0 m-0  text-center "> <i
+                                                                  class="fa fa-clock"></i> </div>
+                                                </div>
+
+
+                                                {% for i in  Allsongs %}
+                                                <div class="row  p-1 m-0  hover_music_list_row ">
+                                                      <div class="col-md-2 col-lg-2 col-4 p-0 m-0  text-center ">
+                                                            {{forloop.counter}} .
+                                                            <img id="image_for_loop" src="{{i.imgofsong.url}}" alt="">
+                                                      </div>
+                                                      <div class="col-md-4 col-lg-4  col-5 p-0 m-0">
+                                                            <p class="song_and_siger">{{i.name | safe |truncatechars:33}}</p>
+                                                      </div>
+                                                      <div class="col-md-3 col-lg-3  col-5 p-0 m-0">
+                                                            <p class="song_and_siger">{{i.singer | safe |truncatechars:20}}</p>
+                                                      </div>
+                                                      <div class="col-md-1 col-lg-1 col-2 p-0 m-0 text-center "> <i
+                                                                  class="fa mt-2  fa-heart text-danger"
+                                                                  aria-hidden="true"></i></div>
+                                                      <div class="col-md-1 col-lg-1 col-1 p-0 m-0  text-center ">20:9
+                                                      </div>
+                                                </div>
+                                                {% endfor %}
+                                              
+
+
+                                          </div>
+{% endif %}
+
+       <!-- these is the explore   -->
+
+                                          <p>Artist:</p>
+
+ {% if artist|length < 1  %}
+      <h6 class="border_bottom">There is no artist related to search please try once more..</h6>
+{% else %}
+        <div class="row m-0 p-0 border_bottom">
+
+
+
+
+                                                {% for i in artist %} 
+                                          <div class="wapper">
+                                          <div class="image">
+                                          <img
+                                                        src="{{i.image.url}}">
+                                          </div>
+                                          <div class="content">
+                                          <div class="info">
+                                                        <h4> {{i.name}}</h4>
+                                                        <span>Album</span>
+                                          </div>
+                                          </div>
+                                          <ul>
+                                                        <li><a class="anker" href="/musiclist/artist/{{i.name}}"><span class="fa fa-play text-center"></span></a></li>
+                                                        <li><a class="anker" href="/musiclist/artist/{{i.name}}"><span class="fab fa-twitter text-center"></span></a></li>
+                                                        
+                                          </ul>
+                                          </div>
+
+
+                       
+                                          {% endfor %}
+                                    </div>
+{% endif %}
+
+                                      
+                                   </div>
+                                
+                                     
+
+                            
+                                       
+                                   
+
+
+{% endblock body %}
+
+
+
+ {% block music_menu %}   <div  class=" control-scroll music_menu bg-dark" id=" control-scroll">
+      <div class="row m-0 p-0 ">
+            <div class="col-1 text-center p-0 m-0 ">
+                  <div class="img-area">
+                        <img class="image_of_the_song"   src="" alt="">
+                  </div>
+            </div>
+            <div class="col-4  p-0 m-0 ">
+                  <div class="song-details">
+                        <marquee behavior="" direction="">
+                              <span class="name"></span>
+                              <span class="artist"></span>
+                        </marquee>
+                  </div>
+                  <div class="progress-area">
+                        <div class="progress-bar">
+                              <audio id="main-audio" src=""></audio>
+                        </div>
+                        <div class="song-timer">
+                              <span class="current-time">0:00</span>
+                              <span class="max-duration">0:00</span>
+                        </div>
+                  </div>
+
+            </div>
+            <div class="col-3 ">
+                  <div class="controls">
+                        <i id="repeat-plist" class="material-icons" title="Playlist looped">repeat</i>
+                        <i id="prev" class="material-icons">skip_previous</i>
+                        <div class="play-pause">
+                              <i class="material-icons play">play_arrow</i>
+                        </div>
+                        <i id="next" class="material-icons">skip_next</i>
+                  </div>
+            </div>
+            <div class="col-1">
+                  <i class="fa mt-2  fa-heart text-danger" aria-hidden="true"></i><span>36K
+                        Heart</span>
+            </div>
+      </div>
+</div>
+
+
+<script>
+      let allMusic = [{% for i in Allsongs %}
+             {
+                  name: "{{i.name}}",
+                  artist: "{{i.singer}}",
+                  img: "{{i.imgofsong.url}}",
+                  src: "{{i.song}}",
+
+            },
+            {% endfor %}
+      ]
+      const wrapper = document.querySelector(".wrapper"),
+            musicImg = wrapper.querySelector(".img-area img"),
+            musicName = wrapper.querySelector(".song-details .name"),
+            musicArtist = wrapper.querySelector(".song-details .artist"),
+            playPauseBtn = wrapper.querySelector(".play-pause"),
+            prevBtn = wrapper.querySelector("#prev"),
+            nextBtn = wrapper.querySelector("#next"),
+            mainAudio = wrapper.querySelector("#main-audio"),
+            progressArea = wrapper.querySelector(".progress-area"),
+            progressBar = progressArea.querySelector(".progress-bar"),
+            musicList = wrapper.querySelector(".music-list"),
+            closemoreMusic = musicList.querySelector("#close");
+
+      let musicIndex = 0;
+      isMusicPaused = true;
+
+      window.addEventListener("load", () => {
+            loadMusic(musicIndex);
+            playingSong();
+      });
+
+      function loadMusic(indexNumb) {
+            musicName.innerText = allMusic[indexNumb - 1].name;
+            musicArtist.innerText = allMusic[indexNumb - 1].artist;
+            musicImg.src = `${allMusic[indexNumb - 1].img}`;
+            mainAudio.src = `/media/${allMusic[indexNumb - 1].src}`;
+
+      }
+
+      //play music function
+      function playMusic() {
+            wrapper.classList.add("paused");
+            playPauseBtn.querySelector("i").innerText = "pause";
+            mainAudio.play();
+      }
+
+      //pause music function
+      function pauseMusic() {
+            wrapper.classList.remove("paused");
+            playPauseBtn.querySelector("i").innerText = "play_arrow";
+            mainAudio.pause();
+      }
+
+      //prev music function
+      function prevMusic() {
+            musicIndex--; //decrement of musicIndex by 1
+            //if musicIndex is less than 1 then musicIndex will be the array length so the last music play
+            musicIndex < 1 ? musicIndex = allMusic.length : musicIndex = musicIndex;
+            loadMusic(musicIndex);
+            playMusic();
+            playingSong();
+      }
+
+      //next music function
+      function nextMusic() {
+            musicIndex++; //increment of musicIndex by 1
+            //if musicIndex is greater than array length then musicIndex will be 1 so the first music play
+            musicIndex > allMusic.length ? musicIndex = 1 : musicIndex = musicIndex;
+            loadMusic(musicIndex);
+            playMusic();
+            playingSong();
+      }
+
+      // play or pause button event
+      playPauseBtn.addEventListener("click", () => {
+            const isMusicPlay = wrapper.classList.contains("paused");
+            //if isPlayMusic is true then call pauseMusic else call playMusic
+            isMusicPlay ? pauseMusic() : playMusic();
+            playingSong();
+      });
+
+      //prev music button event
+      prevBtn.addEventListener("click", () => {
+            prevMusic();
+      });
+
+      //next music button event
+      nextBtn.addEventListener("click", () => {
+            nextMusic();
+      });
+
+      // update progress bar width according to music current time
+      mainAudio.addEventListener("timeupdate", (e) => {
+            const currentTime = e.target.currentTime; //getting playing song currentTime
+            const duration = e.target.duration; //getting playing song total duration
+            let progressWidth = (currentTime / duration) * 100;
+            progressBar.style.width = `${progressWidth}%`;
+
+            let musicCurrentTime = wrapper.querySelector(".current-time"),
+                  musicDuartion = wrapper.querySelector(".max-duration");
+            mainAudio.addEventListener("loadeddata", () => {
+                  // update song total duration
+                  let mainAdDuration = mainAudio.duration;
+                  let totalMin = Math.floor(mainAdDuration / 60);
+                  let totalSec = Math.floor(mainAdDuration % 60);
+                  if (totalSec < 10) { //if sec is less than 10 then add 0 before it
+                        totalSec = `0${totalSec}`;
+                  }
+                  musicDuartion.innerText = `${totalMin}:${totalSec}`;
+            });
+            // update playing song current time
+            let currentMin = Math.floor(currentTime / 60);
+            let currentSec = Math.floor(currentTime % 60);
+            if (currentSec < 10) { //if sec is less than 10 then add 0 before it
+                  currentSec = `0${currentSec}`;
+            }
+            musicCurrentTime.innerText = `${currentMin}:${currentSec}`;
+      });
+
+      // update playing song currentTime on according to the progress bar width
+      progressArea.addEventListener("click", (e) => {
+            let progressWidth = progressArea.clientWidth; //getting width of progress bar
+            let clickedOffsetX = e.offsetX; //getting offset x value
+            let songDuration = mainAudio.duration; //getting song total duration
+
+            mainAudio.currentTime = (clickedOffsetX / progressWidth) * songDuration;
+            playMusic(); //calling playMusic function
+            playingSong();
+      });
+
+      //change loop, shuffle, repeat icon onclick
+      const repeatBtn = wrapper.querySelector("#repeat-plist");
+      repeatBtn.addEventListener("click", () => {
+            let getText = repeatBtn.innerText; //getting this tag innerText
+            switch (getText) {
+                  case "repeat":
+                        repeatBtn.innerText = "repeat_one";
+                        repeatBtn.setAttribute("title", "Song looped");
+                        break;
+                  case "repeat_one":
+                        repeatBtn.innerText = "shuffle";
+                        repeatBtn.setAttribute("title", "Playback shuffled");
+                        break;
+                  case "shuffle":
+                        repeatBtn.innerText = "repeat";
+                        repeatBtn.setAttribute("title", "Playlist looped");
+                        break;
+            }
+      });
+
+      //code for what to do after song ended
+      mainAudio.addEventListener("ended", () => {
+            // we'll do according to the icon means if user has set icon to
+            // loop song then we'll repeat the current song and will do accordingly
+            let getText = repeatBtn.innerText; //getting this tag innerText
+            switch (getText) {
+                  case "repeat":
+                        nextMusic(); //calling nextMusic function
+                        break;
+                  case "repeat_one":
+                        mainAudio.currentTime = 0; //setting audio current time to 0
+                        loadMusic(
+                              musicIndex
+                        ); //calling loadMusic function with argument, in the argument there is a index of current song
+                        playMusic(); //calling playMusic function
+                        break;
+                  case "shuffle":
+                        let randIndex = Math.floor((Math.random() * allMusic.length) +
+                              1); //genereting random index/numb with max range of array length
+                        do {
+                              randIndex = Math.floor((Math.random() * allMusic.length) + 1);
+                        } while (musicIndex ==
+                              randIndex
+                        ); //this loop run until the next random number won't be the same of current musicIndex
+                        musicIndex = randIndex; //passing randomIndex to musicIndex
+                        loadMusic(musicIndex);
+                        playMusic();
+                        playingSong();
+                        break;
+            }
+      });
+
+
+
+      //play particular song from the list onclick of li tag
+      function playingSong() {
+            const allLiTag = ulTag.querySelectorAll("li");
+
+            for (let j = 0; j < allLiTag.length; j++) {
+                  let audioTag = allLiTag[j].querySelector(".audio-duration");
+
+                  if (allLiTag[j].classList.contains("playing")) {
+                        allLiTag[j].classList.remove("playing");
+                        let adDuration = audioTag.getAttribute("t-duration");
+                        audioTag.innerText = adDuration;
+                  }
+
+                  //if the li tag index is equal to the musicIndex then add playing class in it
+                  if (allLiTag[j].getAttribute("li-index") == musicIndex) {
+                        allLiTag[j].classList.add("playing");
+                        audioTag.innerText = "Playing";
+                  }
+
+                  allLiTag[j].setAttribute("onclick", "clicked(this)");
+            }
+      }
+
+      //particular li clicked function
+      function clicked(element) {
+            let getLiIndex = element.getAttribute("li-index");
+            musicIndex = getLiIndex; //updating current song index with clicked li index
+            loadMusic(musicIndex);
+            playMusic();
+            playingSong();
+      }
+</script>
+
+ {% endblock music_menu %}

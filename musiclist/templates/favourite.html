@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block favourite %} active {% endblock favourite %}
+{% block title %} Watch later {% endblock title %}
+{% block body %}
+<div class="container my-3">
+      {% if song|length < 1 %} <h1> Oops! look like You have not save any music for theNew Songs.</h1>
+
+      {% endif %}
+      {% for song in song %}
+      <div
+            class="row extradiv no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 my-4 position-relative">
+            <div class="col-3">
+                  <img src="{{song.image.url}}" alt="" height='234' width="100%">
+            </div>
+            <div class="col-9 p-4 d-flex flex-column position-static">
+                  <strong class="d-inline-block mb-2 text-primary">Album of: {{song.singer}}</strong>
+                  <h3 class="mb-0">{{song.name}}</h3>
+                  <div class="mb-1 text-muted">{{song.tags}}</div>
+                  <p class="card-text mb-auto">{{song.movie| truncatechars:500}}</p>
+
+                  <a href="/musiclist/songs/{{song.song_id}}">
+                        <button class="btn btn-primary">listen Song</button> </a>
+            </div>
+      </div>
+
+
+      
+      {% endfor %}
+</div>
+{% endblock %}
